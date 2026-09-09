@@ -171,7 +171,7 @@ func (c *Client) resolveMachinesByAlertID(ctx context.Context, rows []*Decisions
 // same machine. Falls back to "N/A" for alerts with no owning machine, matching the
 // convention in pkg/apiserver/controllers/v1/alerts.go's FormatOneAlert.
 func foldByMachine(rows []*DecisionsByScenario, machineByAlertID map[int]string) []*DecisionsByScenario {
-	type key struct{ scenario, origin, typ, machine string }
+	type key struct{ scenario, origin, typ, machine string } //nolint:unused // fields only compared/hashed as map key, never dot-accessed
 
 	folded := make(map[key]*DecisionsByScenario, len(rows))
 	order := make([]key, 0, len(rows))
